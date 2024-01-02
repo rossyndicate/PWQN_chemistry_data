@@ -1,0 +1,69 @@
+---
+title: "chemistry prep"
+format: html
+  self-contained: true
+code-fold: true
+warning: false
+editor: visual
+---
+
+# Lower PWQN Data Prep
+
+#### Set Up
+
+```{r setup}
+#load packages and set up colors for plotting
+source("scripts/00_analysis_setup.R")
+```
+
+### [**Goals:**]{.underline}
+
+#### This Document will:
+
+-   Clean reservoir data from RMRS and make it usable for our analysis and to publish for funders and external researchers
+
+This looks like:
+
+-   Making dates compatible
+
+-   Adding location characteristics
+
+```{r merging}
+newest_raw_file <- "LowerPoudre_StreamChem_2023.xlsx"
+
+#read most recent file
+water_chemistry <- read_xlsx(paste0('data/raw/', newest_raw_file), skip = 1)%>%
+  #clean up time column from XLSX formatting
+  mutate(time = gsub("1899-12-31 ", "", as.character(Time)), 
+         #create datetime object only when time is not NA
+         dt = case_when( 
+    !is.na(Time) ~ as.POSIXct(paste0(Date," ", time), format = "%Y-%m-%d %H:%M:%S", tz = "MST"), TRUE ~ NA),
+    dt_char = as.character(dt),
+    # Get sample era number
+    FCW_Number = as.numeric(gsub('FCW ', '', IDNo)), 
+          #get year
+          Year =  year(Date), 
+          #rename sitelabel to site_code
+          site_code = SiteLabel)%>%
+  #Remove duplicate and blank samples that were used by RMRS for QA
+  filter(SampleType == "NORM") %>%
+  # Remove unnecessary columns
+  dplyr::select(-c(SiteLabel, IDNo, SiteDescr, SampleType, Time))%>%
+   #add location metadata created by Sam Struthers
+  left_join(dplyr::select(site_meta,c(site_code,lat_long, Common_name, Site.Description)),by="site_code")
+
+
+```
+
+```{r saving}
+
+# grab most recent date from chemistry dataset
+up_to_date <- format(max(water_chemistry$Date), "%Y%m%d")
+#write dataset to csv
+write_csv_arrow(select(water_chemistry, -dt),paste0("data/cleaned/lower_poudre__chemistry_up_to_",up_to_date, ".csv") )
+
+# Write to RDS file as well
+write_rds(x = water_chemistry, file = paste0("data/cleaned/lower_poudre__chemistry_up_to_",up_to_date, ".rds"))
+
+
+```
