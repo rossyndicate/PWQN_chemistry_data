@@ -1,0 +1,1 @@
+Location metadata was organized by Field Coordinator, Sam Struthers. It's accuracy is user supplied and is accurate to 5 m resolution. 
