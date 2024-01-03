@@ -4,41 +4,41 @@ Current release: (09/2023- 12/2023)
 
 Authors: Samuel J. Struthers (<https://orcid.org/0000-0003-1263-9525>),Timothy S. Fegel, Charles C. Rhoades (<https://orcid.org/0000-0002-3336-2257>), Matthew R.V. Ross (<https://orcid.org/0000-0001-9105-4255>)
 
-**Data Description:** The majority of this dataset is water chemistry grab sample data collected in the Cache la Poudre Watershed in late 2023. These data are focused on basic water quality parameters, as well as cations and anions. Data were collected at various mainstem sites in the Lower Cache la Poudre watershed as well as one tributary of the Cache la Poudre River, Boxelder Creek. This project is ongoing and additional data will be released as it is analyzed.
+**Data Description:** The majority of this dataset is water chemistry grab sample data collected in the Cache la Poudre (Poudre) Watershed in late 2023. These data are focused on basic water quality parameters, as well as cations and anions. Data were collected at various mainstem sites in the Lower Poudre Watershed as well as one tributary of the Poudre River, Boxelder Creek. This project is ongoing and additional data will be released as it is analyzed.
 
-**Background Information:** Following a fish kill in the Cache La Poudre River in Fort Collins in 2018, the ROSSyndicate at CSU and the City of Fort Collins partnered to deploy water quality sensors thoughout the the Lower Cache La Poudre River (Canyon Mouth to Windsor). The goal of this work is to understand how agricultural practices and urban storm water management influence water quality in the Poudre River, as well as tracking potential future water impairments or fish kills. In 2023, ROSS began collaborating with the Mortenson Center at the University of Colorado Boulder to collect grab samples and deploy additional sensors to investigate drivers of water quality and build correlations betweeen water chemistry data and in situ water sensors.
+**Background Information:** Following a fish kill in the Poudre River in Fort Collins in 2018, the ROSSyndicate at CSU and the City of Fort Collins partnered to deploy water quality sensors thoughout the the Lower Poudre River (below the Poudre Canyon mouth to Windsor). The goal of this work is to understand how agricultural practices and urban storm water management influence water quality in the Poudre River, as well as tracking potential future water impairments or fish kills. In 2023, ROSSyndicate began collaborating with the Mortenson Center at the University of Colorado Boulder to collect grab samples and deploy additional sensors to investigate drivers of water quality and build correlations betweeen water chemistry data and in situ water sensors. Water quality grab samples were analyzed by Biogeochemistry lab at the US Forest Service Rocky Mountain Research Station.
 
 **Folder Structure**
 
-The primary data file is `data/cleaned/lower_poudre_chemistry_up_to_20231205.csv`. Column definitions and units are defined in the file `metadata/water_chemistry_units.xlsx`. Methods used to collect these data are outline below or in `metadata/rmrs_procedures.png`
+The primary data file is `data/cleaned/lower_poudre_chemistry_up_to_20231205.csv`. Column definitions and units are defined in the file `metadata/water_chemistry_units.xlsx`. Methods used to collect these data are outlined below as well as in `metadata/rmrs_procedures.png`
 
-Location metadata file is `data/metadata/sonde_location_metadata.csv`. A basic map showing all sampling locations is available at `site_map.html`.
+The location metadata file is `data/metadata/sonde_location_metadata.csv`. A basic map showing all sampling locations is available at `site_map.html`.
 
 Code is housed in the `scripts` folder and contains the following files:
 
 -   `00_analysis_setup.R` loads packages and metadata files to be collated in `01_chem_prep.qmd`.
 
--   `01_chem_prep.qmd` adds metadata and formats data for downstream uses using most recent water chemistry data file supplied by RMRS lab.
+-   `01_chem_prep.qmd` adds metadata and formats data for downstream uses using the most recent water chemistry data file supplied by the RMRS lab.
 
--   `sites_map.R` uses location metadata to create `site_map.html`
+-   `sites_map.R` uses location metadata to create `site_map.html`.
 
--   `demo.R` provides an example of how to download data from Zenodo directly in RStudio
+-   `demo.R` provides an example of how to download data from Zenodo directly in RStudio.
 
 Data are housed in the `data` folder and it contains the following:
 
--   `cleaned`: This folder contains the most recently available dataset and has associated location data added to the chemistry data. The addition of the metadata was accomplished using the `01_chem_prep.qmd` R script. Two file formats are provided, .csv and .RDS, depending on the user's preference.
+-   `cleaned`: This folder contains the most recently available dataset and has associated location data appended to it. The addition of this metadata was accomplished using the `01_chem_prep.qmd` R script. Two file formats are provided, .csv and .RDS, depending on the user's preference.
 
 -   `cleaned_archive`: This folder contains an archive of previously cleaned data. Downstream users are encouraged to use the collated data file `lower_poudre_chemistry_up_to_20231205.csv` in the `cleaned` directory.
 
 -   `raw`: These data were directly received by the ROSSyndicate from RMRS lab managers. Downstream users are encouraged to use the collated data file `lower_poudre_chemistry_up_to_20231205.csv` in the `cleaned` directory.
 
--   `metadata`: This contains location data, parameter/column name definitions, units, and methods used at the RMRS Lab. The file `data/metadata/sonde_location_metadata.csv` contains basic location metadata supplied by ROSSyndicate Field Coordinator, Sam Struthers.
+-   `metadata`: This contains location data, parameter/column name definitions, units, and methods used at the RMRS lab. The file `data/metadata/sonde_location_metadata.csv` contains basic location metadata supplied by ROSSyndicate field coordinator, Sam Struthers.
 
 **Sample Collection and Processing**
 
-Field dissolved oxygen, temperature and conductivity measurements were taken using a Thermo Orion Star with RDO Optical and Conductivity probes. Times, when present, are listed in MST.
+Field dissolved oxygen, temperature, and conductivity measurements were taken using a Thermo Orion Star with RDO Optical and Conductivity probes. Times, when present, are listed in MST.
 
-Samples were collected by ROSSyndicate technicians and were processed at the Rocky Mountain Research Station's Biogeochemistry Lab. Due to the high ion concentrations in the samples, samples were run at the following dilutions using greater than 18 MΩ-cm deionized water:
+Samples were collected by ROSSyndicate technicians and were processed at the Rocky Mountain Research Station's Biogeochemistry lab. Due to the high ion concentrations in the samples, samples were run at the following dilutions using greater than 18 MΩ-cm deionized water:
 
 -   To measure ANC and NO3, samples were run at 1:5 dilution
 
