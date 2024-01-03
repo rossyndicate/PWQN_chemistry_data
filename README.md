@@ -26,7 +26,7 @@ Code is housed in the `scripts` folder and contains the following files:
 
 Data are housed in the `data` folder and it contains the following:
 
--   `cleaned`: This folder contains the most recently available dataset and has associated location data added to the chemistry data. The addition of the metadata was accomplished using the `01_chem_prep.qmd` R script.
+-   `cleaned`: This folder contains the most recently available dataset and has associated location data added to the chemistry data. The addition of the metadata was accomplished using the `01_chem_prep.qmd` R script. Two file formats are provided, .csv and .RDS, depending on the user's preference.
 
 -   `cleaned_archive`: This folder contains an archive of previously cleaned data. Downstream users are encouraged to use the collated data file `lower_poudre_chemistry_up_to_20231205.csv` in the `cleaned` directory.
 
