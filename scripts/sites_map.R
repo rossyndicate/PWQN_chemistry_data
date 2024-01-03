@@ -10,21 +10,21 @@ sonde_sites <- site_meta%>%
  #make into sf object for mapping
   sf::st_as_sf(coords = c("sonde_long","sonde_lat"), crs = 4326)
 #organize from upstream to downstream
-sonde_sites$site_code <- factor(sonde_sites$site_code , levels = c("JOEI", "CBRI", "CHD", "PFAL", "SFM", "PBD", "tamasag", "legacy", "lincoln","timberline","prospect","boxelder", "archery","riverbluffs", "boxcreek", "springcreek"  )) 
+sonde_sites$site_code <- factor(sonde_sites$site_code , levels = c("PBD", "lincoln","timberline","prospect","boxelder", "archery", "boxcreek", "springcreek"  )) 
 
 
 #Make map of each type of site that ROSS samples and owns the data for
-map <-mapview::mapview(
-  filter(sonde_sites, Project == "Reservoir Study"),
-  zcol = "site_code",
-  col.regions = brewer.pal(6, "Set2"),
-  legend = TRUE, 
-  layer.name = "Upper Study Sites"
-)+ 
+map <- 
+  mapview::mapview(
+    filter(sonde_sites, Project == "Reservoir Study"),
+    zcol = "site_code",
+    col.regions = "#94aff8",
+    legend = TRUE, 
+    layer.name = "Canyon Mouth Site")+
   mapview::mapview(
     filter(sonde_sites, Project == "PWQN"),
     zcol = "site_code",
-    col.regions = brewer.pal(8, "YlOrRd"),
+    col.regions = brewer.pal(5, "YlOrRd"),
     legend = TRUE, 
     layer.name = "Lower Study Sites"
   )+ mapview::mapview(
