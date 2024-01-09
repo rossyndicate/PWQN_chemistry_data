@@ -1,5 +1,7 @@
 # Poudre Water Quality Network Study Chemistry Data
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10459093.svg)](https://doi.org/10.5281/zenodo.10459093)
+
 Current release: (09/2023- 12/2023)
 
 Authors: Samuel J. Struthers (<https://orcid.org/0000-0003-1263-9525>),Timothy S. Fegel, Charles C. Rhoades (<https://orcid.org/0000-0002-3336-2257>), Matthew R.V. Ross (<https://orcid.org/0000-0001-9105-4255>)
